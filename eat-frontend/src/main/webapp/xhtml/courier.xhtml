@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en"
+      xmlns:crud="http://java.sun.com/jsf/composite/crud"
+      xmlns:tp="http://java.sun.com/jsf/composite/">
+<body>
+<ui:composition template="layout/mainTemplate.xhtml">
+
+    <ui:define name="title">Futárok</ui:define>
+    <ui:define name="content">
+        <h:form id="form" rendered="#{loggedInUserBean.isLoggedIn()}">
+            <p:growl id="growl" showDetail="false"/>
+
+            <crud:crudFunctions id="crudFunctions" bean="#{courierCRUDMbean}" onCompleShowDialog="PF('courierDialog').show()"
+                                onCompleUpdate="@([id$=courierForm])"/>
+
+            <p:dataTable id="table" value="#{courierCRUDMbean.list}" var="courier" rows="10"
+                         selectionMode="single" selection="#{courierCRUDMbean.selectedEntity}" rowKey="#{courier.id}"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                <p:ajax exportable="false" event="rowSelect" update="@form"/>
+
+                <p:column toggleable="false" sortBy="#{courier.id}" filterBy="#{courier.id}" filterMatchMode="contains"
+                          headerText="ID">
+                    <h:outputText value="#{courier.id}"/>
+                </p:column>
+                <p:column sortBy="#{courier.firstName}" filterBy="#{courier.firstName}" filterMatchMode="contains" headerText="Keresztnév">
+                    <h:outputText value="#{courier.firstName}"/>
+                </p:column>
+                <p:column sortBy="#{courier.lastName}" filterBy="#{courier.lastName}" filterMatchMode="contains" headerText="Vezetéknév">
+                    <h:outputText value="#{courier.lastName}"/>
+                </p:column>
+                <p:column sortBy="#{courier.phoneNumber}" filterBy="#{courier.phoneNumber}" filterMatchMode="contains"
+                          headerText="Telefon szám">
+                    <h:outputText value="#{courier.phoneNumber}"/>
+                </p:column>
+                <p:column sortBy="#{courier.createdDate}" filterBy="#{courier.createdDate}" filterMatchMode="contains"
+                          headerText="Létrehozás dátuma">
+                    <h:outputText value="#{courier.createdDate}">
+                        <f:convertDateTime pattern="yyyy.MM.dd HH:mm" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{courier.modifiedDate}" filterBy="#{courier.modifiedDate}" filterMatchMode="contains"
+                          headerText="Utolsó módosítás dátuma">
+                    <h:outputText value="#{courier.modifiedDate}">
+                        <f:convertDateTime pattern="yyyy.MM.dd HH:mm" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{courier.createdBy.userName}" filterBy="#{courier.createdBy.userName}" filterMatchMode="contains"
+                          headerText="Létrehozó felhasználó" rendered="#{loggedInUserBean.isAdmin()}">
+                    <h:outputText value="#{courier.createdBy.userName}"/>
+                </p:column>
+                <p:column sortBy="#{courier.modifiedBy.userName}" filterBy="#{courier.modifiedBy.userName}" filterMatchMode="contains"
+                          headerText="Utolsó módosító felhasználó" rendered="#{loggedInUserBean.isAdmin()}">
+                    <h:outputText value="#{courier.modifiedBy.userName}"/>
+                </p:column>
+            </p:dataTable>
+
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="400">
+                <p:commandButton value="Nem" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                <p:commandButton value="Igen" type="button" styleClass="ui-confirmdialog-yes"/>
+            </p:confirmDialog>
+
+        </h:form>
+
+
+        <p:dialog id="courierDialog" widgetVar="courierDialog" header="Futár" modal="true" closable="true">
+            <h:form id="courierForm">
+                <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:450px">
+                    <p:outputLabel value="Keresztnév"/>
+                    <p:inputText required="true" requiredMessage="Keresztnév kötelező"
+                                 value="#{courierCRUDMbean.selectedEntity.firstName}"/>
+
+                    <p:outputLabel value="Vezetéknév"/>
+                    <p:inputText required="true" requiredMessage="Vezetéknév kötelező"
+                                 value="#{courierCRUDMbean.selectedEntity.lastName}"/>
+
+                    <p:outputLabel value="Telefon szám"/>
+                    <p:inputText id="regex" requiredMessage="Telefon szám kötelező"
+                                 value="#{courierCRUDMbean.selectedEntity.phoneNumber}" validatorMessage="Kérem adjon meg egy magyarországi telefonszámot.">
+                        <f:validateRegex pattern="((\+36)|(00)|(06))[0-9]{9}"/>
+                    </p:inputText>
+
+                    <p:commandButton value="Mentés" icon="pi pi-save" actionListener="#{courierCRUDMbean.save()}" validateClient="true"
+                                     process="formPanel" update=":form">
+                    </p:commandButton>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

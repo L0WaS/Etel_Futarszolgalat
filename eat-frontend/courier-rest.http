@@ -1,0 +1,39 @@
+GET http://localhost:8080/api/courier
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/courier
+Content-Type: application/json
+
+{
+  "createdById": 1,
+  "modifiedById": 1,
+  "createdDate": "2021-05-16T04:25:03Z",
+  "modifiedDate": "2021-06-16T04:25:03Z",
+  "firstName": "Végre",
+  "lastName": "Működik",
+  "phoneNumber": "+36301234567"
+}
+###
+
+PUT http://localhost:8080/api/courier
+Content-Type: application/json
+
+{
+  "id": 2,
+  "createdById": 3,
+  "modifiedById": 3,
+  "createdDate": "2018-04-17T06:01:01Z",
+  "modifiedDate": "2019-05-03T07:02:02Z",
+  "firstName": "Török",
+  "lastName": "Abel",
+  "phoneNumber": "06305666654"
+}
+
+###
+
+DELETE http://localhost:8080/api/courier/3
+Accept: application/json
+
+###

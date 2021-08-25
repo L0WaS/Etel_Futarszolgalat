@@ -1,0 +1,40 @@
+GET http://localhost:8080/api/food
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/food
+Content-Type: application/json
+
+{
+  "createdById": 2,
+  "modifiedById": 2,
+  "createdDate": "2020-01-22T12:25:20Z",
+  "modifiedDate": "2020-01-22T13:25:20Z",
+  "description": "nagyon finom",
+  "name": "Pörkölt ",
+  "price": 400
+}
+
+###
+
+PUT http://localhost:8080/api/food
+Content-Type: application/json
+
+{
+  "id": 3,
+  "createdById": 5,
+  "modifiedById": 16,
+  "createdDate": "2021-03-20T11:11:03Z",
+  "modifiedDate": "2021-04-19T11:11:03Z",
+  "description": "Remélem lecseréled",
+  "name": "Garnéla",
+  "price": 699
+}
+
+###
+
+DELETE http://localhost:8080/api/food/3
+Accept: application/json
+
+###

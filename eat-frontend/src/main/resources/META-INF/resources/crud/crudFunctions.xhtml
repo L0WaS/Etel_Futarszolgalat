@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute required="true" name="bean" type="hu.ulyssys.java.course.maven.mbean.CoreCRUDMbean"/>
+    <composite:attribute required="true" name="onCompleShowDialog" type="java.lang.String"/>
+    <composite:attribute required="true" name="onCompleUpdate" type="java.lang.String"/>
+
+</composite:interface>
+
+<composite:implementation>
+    <p:outputPanel id="crudFunctionToolbar">
+        <p:toolbar rendered="#{loggedInUserBean.isLoggedIn()}">
+            <p:toolbarGroup>
+                <p:commandButton id="add" icon="pi pi-plus" process="@this" value="Új hozzáadása"
+                                 actionListener="#{cc.attrs.bean.initSave}" update="#{cc.attrs.onCompleUpdate}"
+                                 oncomplete="#{cc.attrs.onCompleShowDialog}"/>
+                <p:commandButton disabled="#{cc.attrs.bean.selectedEntity.id==null}" id="delete" icon="pi pi-times"
+                                 process="@this" value="Törlés" actionListener="#{cc.attrs.bean.remove}"
+                                 update="@form">
+                    <p:confirm header="Törlés" message="Biztos vagy benne?" icon="pi pi-times"/>
+                </p:commandButton>
+                <p:commandButton disabled="#{cc.attrs.bean.selectedEntity.id==null}" id="update" process="@this"
+                                 value="Módosítás" icon="pi pi-pencil" update="#{cc.attrs.onCompleUpdate}"
+                                 oncomplete="#{cc.attrs.onCompleShowDialog}"/>
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <p:commandButton id="columntTogglerBtn" icon="pi pi-table"/>
+
+                <p:columnToggler id="columntToggler" trigger="columntTogglerBtn" datasource=":form:table"/>
+
+            </p:toolbarGroup>
+        </p:toolbar>
+    </p:outputPanel>
+</composite:implementation>
+</html>

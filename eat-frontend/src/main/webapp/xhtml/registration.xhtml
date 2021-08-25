@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xml:lang="en" lang="en"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:crud="http://java.sun.com/jsf/composite/crud"
+      xmlns:tp="http://java.sun.com/jsf/composite/">
+<body>
+<ui:composition template="layout/mainTemplate.xhtml">
+
+    <ui:define name="title">Regisztráció</ui:define>
+    <ui:define name="content">
+
+        <div style="width: 100%; height: 100%">
+            <h:form id="userForm" style="margin-right: auto; display: flex; margin-left: auto; width: 30%;
+                                     flex-direction: row; justify-content: center;">
+                <p:commandButton oncomplete="PF('loginDialog').show()"
+                                 value="Bejelentkezés" icon="pi pi-fw pi-sign-in"
+                                 styleClass="ui-button-success"
+                                 style="margin: 40px"/>
+                <p:commandButton oncomplete="PF('registrationDialog').show()"
+                                 value="Regisztráció"
+                                 styleClass="ui-button-danger"
+                                 icon="pi pi-fw pi-plus"
+                                 style="margin: 40px"/>
+            </h:form>
+        </div>
+        <p:dialog header="Bejelentkezés" modal="true" widgetVar="loginDialog" id="loginDialog" closable="true">
+            <h:form>
+                <p:panelGrid layout="grid" columns="2" style="width:450px">
+                    <p:outputLabel value="Név"/>
+                    <p:inputText required="true" requiredMessage="Név kötelező" maxlength="200"
+                                 value="#{registrationCRUDMbean.selectedEntity.userName}"/>
+
+                    <p:outputLabel value="Jelszó"/>
+                    <p:password required="true" requiredMessage="Jelszó kötelező"
+                                value="#{registrationCRUDMbean.selectedEntity.passwordHash}"/>
+
+                    <p:commandButton value="Bejelentkezés" actionListener="#{registrationCRUDMbean.doLogin}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Regisztráció" modal="true" widgetVar="registrationDialog" id="registrationDialog" closable="true">
+            <h:form>
+                <p:panelGrid layout="grid" columns="2" style="width:450px">
+                    <p:outputLabel value="Név"/>
+                    <p:inputText required="true" requiredMessage="Név kötelező"
+                                 value="#{registrationCRUDMbean.selectedEntity.userName}" maxlength="200"/>
+
+                    <p:outputLabel rendered="#{registrationCRUDMbean.selectedEntity.id==null}" value="Jelszó"/>
+                    <p:password rendered="#{registrationCRUDMbean.selectedEntity.id==null}" feedback="true"
+                                required="true" requiredMessage="Jelszó kötelező"
+                                value="#{registrationCRUDMbean.selectedEntity.passwordHash}"/>
+
+                    <p:outputLabel value="Szerepkör"/>
+                    <p:selectOneMenu value="#{registrationCRUDMbean.selectedEntity.role}" required="true"
+                                     requiredMessage="Szerepkör kötelező">
+                        <f:selectItem itemValue="#{null}" itemLabel="Kérem válasszon"/>
+                        <f:selectItem itemValue="ADMIN" itemLabel="Admin felhasználó"/>
+                        <f:selectItem itemValue="USER" itemLabel="Sima felhasználó"/>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="Regisztráció" actionListener="#{registrationCRUDMbean.registration}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+</body>
+</html>
