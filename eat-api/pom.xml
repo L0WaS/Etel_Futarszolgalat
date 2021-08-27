@@ -9,6 +9,7 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../eat-parent</relativePath>
     </parent>
+
     <artifactId>eat-api</artifactId>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
