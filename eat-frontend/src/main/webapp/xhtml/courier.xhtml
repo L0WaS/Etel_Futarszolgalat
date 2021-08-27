@@ -75,11 +75,11 @@
             <h:form id="courierForm">
                 <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:450px">
                     <p:outputLabel value="Keresztnév"/>
-                    <p:inputText required="true" requiredMessage="Keresztnév kötelező"
+                    <p:inputText required="true" requiredMessage="Keresztnév kötelező" maxlength="500"
                                  value="#{courierCRUDMbean.selectedEntity.firstName}"/>
 
                     <p:outputLabel value="Vezetéknév"/>
-                    <p:inputText required="true" requiredMessage="Vezetéknév kötelező"
+                    <p:inputText required="true" requiredMessage="Vezetéknév kötelező" maxlength="500"
                                  value="#{courierCRUDMbean.selectedEntity.lastName}"/>
 
                     <p:outputLabel value="Telefon szám"/>

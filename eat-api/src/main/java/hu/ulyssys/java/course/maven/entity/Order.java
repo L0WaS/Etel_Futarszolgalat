@@ -12,10 +12,6 @@ import javax.validation.constraints.Future;
 @Table(name = "order_food")
 public class Order extends AbstractEat {
 
-    @Future
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "delivered_date", nullable = false)
-    private Date deliveredDate;
 
     @JoinColumn(name = "courier_id")
     @ManyToOne(fetch = FetchType.EAGER)
@@ -34,6 +30,12 @@ public class Order extends AbstractEat {
 
     @Column(name = "nature_of_public_space", length = 200)
     private String natureOfPublicSpace;
+
+    @Future
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "delivered_date", nullable = false)
+    private Date deliveredDate;
+
 
     @Column(name = "house_number", length = 200)
     private String houseNumber;

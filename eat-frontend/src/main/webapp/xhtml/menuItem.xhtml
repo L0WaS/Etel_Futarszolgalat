@@ -25,14 +25,14 @@
                           headerText="ID">
                     <h:outputText value="#{menuItem.id}"/>
                 </p:column>
-                <p:column sortBy="#{menuItem.url}" filterBy="#{menuItem.url}" headerText="url"
+                <p:column sortBy="#{menuItem.url}" filterBy="#{menuItem.url}" headerText="URL"
                           filterMatchMode="contains">
                     <h:outputText value="#{menuItem.url}"/>
                 </p:column>
-                <p:column sortBy="#{menuItem.label}" filterBy="#{menuItem.label}" headerText="label" filterMatchMode="contains">
+                <p:column sortBy="#{menuItem.label}" filterBy="#{menuItem.label}" headerText="Oldal elnevezése" filterMatchMode="contains">
                     <h:outputText value="#{menuItem.label}"/>
                 </p:column>
-                <p:column sortBy="#{menuItem.onlyAdminCanSee}" filterBy="#{menuItem.onlyAdminCanSee}" headerText="Admin jogosúltság szükséges" filterMatchMode="contains">
+                <p:column sortBy="#{menuItem.onlyAdminCanSee}" filterBy="#{menuItem.onlyAdminCanSee}" headerText="Kizárólag Adminként látogatható" filterMatchMode="contains">
                     <h:outputText value="#{menuItem.onlyAdminCanSee}"/>
                 </p:column>
 
@@ -46,9 +46,9 @@
         <p:dialog id="menuDialog" widgetVar="menuDialog" header="Menü elem" modal="true" closable="true">
             <h:form id="menuItemForm">
                 <p:panelGrid layout="grid" columns="2" id="formPanel" style="width: 400px">
-                    <p:outputLabel value="Label"/>
+                    <p:outputLabel value="Oldal elnevezése"/>
                     <p:inputText value="#{menuCRUDMbean.selectedEntity.label}" required="true"
-                                 requiredMessage="Label kötelező"/>
+                                 requiredMessage="Oldal neve kötelező"/>
 
                     <p:outputLabel value="URL"/>
                     <p:inputText value="#{menuCRUDMbean.selectedEntity.url}" required="true"

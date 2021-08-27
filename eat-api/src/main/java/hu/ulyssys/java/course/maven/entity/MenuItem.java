@@ -3,12 +3,17 @@ package hu.ulyssys.java.course.maven.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "menuitem")
 public class MenuItem extends AbstractEntity{
-    private String url;
-    private String label;
+
     private Boolean onlyAdminCanSee;
+    private String url;
+
+
+    private String label;
+
 
     public String getUrl() {
         return url;

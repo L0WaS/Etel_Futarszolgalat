@@ -41,7 +41,7 @@ public class RegistrationCRUDMbean extends CoreCRUDMbean<AppUser> implements Ser
             }
             super.save();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hiba történt hashelés közben", ""));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hiba történt mentés közben", ""));
             e.printStackTrace();
         }
     }

@@ -18,7 +18,6 @@ public class CourierConverter implements Converter {
 
 
 
-
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o instanceof Courier) {
@@ -30,7 +29,8 @@ public class CourierConverter implements Converter {
         return null;
     }
 
-    
+
+
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
         if (s == null) {

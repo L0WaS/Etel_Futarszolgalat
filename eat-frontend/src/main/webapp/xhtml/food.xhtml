@@ -10,7 +10,7 @@
 <body>
 <ui:composition template="layout/mainTemplate.xhtml">
 
-    <ui:define name="title">Bútorok</ui:define>
+    <ui:define name="title">Ételek</ui:define>
     <ui:define name="content">
         <h:form id="form" rendered="#{loggedInUserBean.isLoggedIn()}">
             <p:growl id="growl" showDetail="false"/>
@@ -80,11 +80,11 @@
             <h:form id="foodForm">
                 <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:450px">
                     <p:outputLabel value="Név"/>
-                    <p:inputText required="true" requiredMessage="Név kötelező"
+                    <p:inputText required="true" requiredMessage="Név kötelező" maxlength="200"
                                  value="#{foodCRUDMbean.selectedEntity.name}"/>
 
                     <p:outputLabel value="Leírás"/>
-                    <p:inputText required="true" requiredMessage="Leírás kötelező"
+                    <p:inputText required="true" requiredMessage="Leírás kötelező" maxlength="500"
                                  value="#{foodCRUDMbean.selectedEntity.description}"/>
 
                     <p:outputLabel value="Ár"/>

@@ -31,11 +31,11 @@ public class LoginRequestBean {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/order.xhtml");
             AppUser appUser = userService.findByUserName(model.getUsername());
             if (appUser == null) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nem létező felhasználó", ""));
+                throw new SecurityException("Nem létező felhasználó");
             }
             String hashedPassword = DigestUtils.sha512Hex(model.getPassword());
             if (!hashedPassword.equals(appUser.getPasswordHash())) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nem megfelelő jelszó", ""));
+                throw new SecurityException("Nem megfelelő jelszó");
             }
             LoggedInUserModel loggedInUserModel = new LoggedInUserModel();
             loggedInUserModel.setUsername(appUser.getUserName());

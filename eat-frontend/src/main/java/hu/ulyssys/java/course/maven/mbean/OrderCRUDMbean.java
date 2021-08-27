@@ -22,17 +22,7 @@ public class OrderCRUDMbean extends AwareCRUDMbean<Order> implements Serializabl
 
     private OrderService orderService;
 
-    @Inject
-    public OrderCRUDMbean(OrderService orderService, AppUserService appUserService, LoggedInUserBean loggedInUserBean, CourierService courierService, FoodService foodService) {
-        super(orderService, appUserService, loggedInUserBean);
-        if (!loggedInUserBean.isLoggedIn()){
-            throw new SecurityException("Kérünk jelentkezzen be az oldal használatához!");
-        }
-        this.courierList = courierService.getAll();
-        this.foodList = foodService.getAll();
-        this.orderService = orderService;
-        refreshData();
-    }
+
     @Override
     protected String dialogName() {
         return "orderDialog";
@@ -50,6 +40,18 @@ public class OrderCRUDMbean extends AwareCRUDMbean<Order> implements Serializabl
         }else {
             setList(orderService.getAll());
         }
+    }
+
+    @Inject
+    public OrderCRUDMbean(OrderService orderService, AppUserService appUserService, LoggedInUserBean loggedInUserBean, CourierService courierService, FoodService foodService) {
+        super(orderService, appUserService, loggedInUserBean);
+        if (!loggedInUserBean.isLoggedIn()){
+            throw new SecurityException("Egy létező felhasználóval kell bejelentkezned a folytatáshoz!");
+        }
+        this.courierList = courierService.getAll();
+        this.foodList = foodService.getAll();
+        this.orderService = orderService;
+        refreshData();
     }
 
     public List<Courier> getCourierList() {

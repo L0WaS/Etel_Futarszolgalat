@@ -3,7 +3,7 @@ Accept: application/json
 
 ###
 ##Adott rendelés lekérdezése
-GET http://localhost:8080/api/order/7
+GET http://localhost:8080/api/order/1
 Accept: application/json
 
 ###
@@ -33,7 +33,7 @@ PUT http://localhost:8080/api/order
 Content-Type: application/json
 
 {
-  "id": 8,
+  "id": 2,
   "createdById": 1,
   "modifiedById": 1,
   "createdDate": "2020-05-20T09:30:30Z",
@@ -50,7 +50,7 @@ Content-Type: application/json
 }
 ###
 
-DELETE http://localhost:8080/api/order/8
+DELETE http://localhost:8080/api/order/2
 Accept: application/json
 
 ###

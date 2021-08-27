@@ -9,6 +9,8 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class FoodServiceImpl extends CoreServiceImpl<Food> implements FoodService {
+
+
     @Override
     public Food findByUserName(String username) {
         return ((FoodDAO) dao).findByUserName(username);
