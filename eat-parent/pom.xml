@@ -19,6 +19,7 @@
         <com.itextpdf.itextpdf-version>5.5.13.2</com.itextpdf.itextpdf-version>
         <javax.enterprise.cdi-api-version>2.0</javax.enterprise.cdi-api-version>
         <javax.servlet-api.javax.servlet-version>4.0.1</javax.servlet-api.javax.servlet-version>
+        <org.projectlombok-version>1.18.26</org.projectlombok-version>
         <!-- Util paraméterek-->
         <ejb-version>3.0</ejb-version>
     </properties>
@@ -87,6 +88,13 @@
                 <version>${javax.servlet-api.javax.servlet-version}</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok-version}</version>
+                <scope>provided</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>
