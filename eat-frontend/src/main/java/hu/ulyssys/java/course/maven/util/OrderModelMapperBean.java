@@ -1,4 +1,4 @@
-package hu.ulyssys.java.course.util;
+package hu.ulyssys.java.course.maven.util;
 
 import hu.ulyssys.java.course.maven.entity.AbstractEntity;
 import hu.ulyssys.java.course.maven.entity.Order;

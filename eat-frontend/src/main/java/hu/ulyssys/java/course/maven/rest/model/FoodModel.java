@@ -3,7 +3,7 @@ package hu.ulyssys.java.course.maven.rest.model;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class FoodModel extends CoreRestModel {
+public class  FoodModel extends CoreRestModel {
     @NotNull
     @Size(max = 500)
     private String name;

@@ -2,19 +2,21 @@ package hu.ulyssys.java.course.maven.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-
-
+import lombok.Getter;
+import lombok.Setter;
 
 
 @MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
-    public Long getId() {
+    /*public Long getId() {
         return id;
     }
 
@@ -22,7 +24,7 @@ public abstract class AbstractEntity {
         this.id = id;
     }
 
-
+*/
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date", nullable = false)

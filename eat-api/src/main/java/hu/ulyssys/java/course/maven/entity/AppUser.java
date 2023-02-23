@@ -1,5 +1,8 @@
 package hu.ulyssys.java.course.maven.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @NamedQuery(name = AppUser.FIND_BY_USERNAME, query = "select u from AppUser u where u.userName=:username ")
@@ -9,23 +12,28 @@ public class AppUser extends AbstractEntity{
 
     public static  final String FIND_BY_USERNAME = "AppUser.findByUsername";
 
+    @Setter
+    @Getter
     @Column(name = "user_name", unique = true, nullable = false, length = 200)
     private String userName;
 
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private AppUserRole role;
 
+    /* Lombok test
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
+    } */
 
     public String getPasswordHash() {
         return passwordHash;
@@ -35,6 +43,7 @@ public class AppUser extends AbstractEntity{
         this.passwordHash = passwordHash;
     }
 
+    /* Lombok test
     public AppUserRole getRole() {
         return role;
     }
@@ -42,7 +51,7 @@ public class AppUser extends AbstractEntity{
     public void setRole(AppUserRole role) {
         this.role = role;
     }
-
+ */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

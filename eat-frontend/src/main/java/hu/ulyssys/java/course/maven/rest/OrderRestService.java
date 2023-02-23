@@ -2,7 +2,7 @@ package hu.ulyssys.java.course.maven.rest;
 
 import hu.ulyssys.java.course.maven.entity.Order;
 import hu.ulyssys.java.course.maven.rest.model.OrderModel;
-import hu.ulyssys.java.course.util.OrderModelMapperBean;
+import hu.ulyssys.java.course.maven.util.OrderModelMapperBean;
 
 import javax.inject.Inject;
 import javax.ws.rs.Path;
